@@ -5,6 +5,42 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+def force_user email: email, role: role
+  user = User.where(email: email).first
+  if user.nil?
+    p "user=#{email} not found, creating with role=#{role}..."
+    user = User.create!(email: email, password: '11235813', password_confirmation: '11235813')
+    user.add_role role
+  else
+    p "user=#{email} already exists..."
+  end
+end
+
+p 'seeding roles...'
+role_names = %w(admin user)
+
+role_names.each do |role_name|
+  #Role.find_or_create_by_name({ :name => role }, :without_protection => true)
+  role = Role.where(name: role_name).first
+  if role.nil?
+    p "role=#{role_name} not found, creating..."
+    Role.create(name: role)
+  else
+    p "role=#{role} already exists..."
+  end
+end
+
+p 'seeding admins...'
+emails = %w(admin@guthub.com)
+emails.each { |email| force_user email: email, role: :admin }
+
+p 'seeding users...'
+emails = %w(user@guthub.com)
+emails.each { |email| force_user email: email, role: :user }
+
+###
+
 r = Recipe.create(title: 'pasta y fagoli', description: 'macaroni and beans')
 r.ingredients.create(amount: 1, uom: UnitOfMeasure::CUP, name: 'pasta')
 r.ingredients.create(amount: 1/2.0, uom: UnitOfMeasure::CUP, name: 'celery')
@@ -23,4 +59,12 @@ r.instructions.create(step: 2, text: 'spread butter on toast')
 r.instructions.create(step: 3, text: 'mix cinnamon and sugar')
 r.instructions.create(step: 4, text: 'sprinkle mixture evenly on toast')
 
-
+r = Recipe.create(title: 'hawaiian pizza', description: 'pizza with ham and pineapples')
+r.ingredients.create(amount: 1, uom: UnitOfMeasure::SLICE, name: 'pineapple')
+r.ingredients.create(amount: 1/8.0, uom: UnitOfMeasure::TSP, name: 'ham')
+r.ingredients.create(amount: 1/4.0, uom: UnitOfMeasure::TSP, name: 'pizza pie')
+r.ingredients.create(amount: 1/2.0, uom: UnitOfMeasure::TSP, name: 'cheese')
+r.instructions.create(step: 1, text: 'cooka da pizza')
+r.instructions.create(step: 2, text: 'putta da stuff')
+r.instructions.create(step: 3, text: 'eata da pizza')
+r.instructions.create(step: 4, text: 'throwa uppa da pizza')

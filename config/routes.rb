@@ -1,9 +1,26 @@
 GutHubApi::Application.routes.draw do
+  devise_for :users
+
+  # tlk
+  # ref: https://gist.github.com/AdrianTeh/3561310#file-cors-with-rails-devise-L62
+  #
+  #devise_for :users, :controllers => {:sessions => 'sessions'}
+
+  # tlk
+  # ref: https://github.com/jesalg/RADD/blob/master/config/routes.rb#L58
+  #
+  devise_scope :user do
+    post 'login' => 'sessions#create', :as => 'login'
+    post 'logout' => 'sessions#destroy', :as => 'logout'
+    get 'current_user' => 'sessions#show_current_user', :as => 'show_current_user'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  root 'recipes#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
