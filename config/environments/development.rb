@@ -29,4 +29,11 @@ GutHubApi::Application.configure do
 
   # per devise install
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Set the logging destination(s)
+  #config.log_to = %w[stdout file]
+  config.log_to = %w[stdout]
+
+  # Show the logging configuration on STDOUT
+  config.show_log_configuration = true
 end

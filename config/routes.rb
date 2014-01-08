@@ -13,6 +13,7 @@ GutHubApi::Application.routes.draw do
     post 'login' => 'sessions#create', :as => 'login'
     post 'logout' => 'sessions#destroy', :as => 'logout'
     get 'current_user' => 'sessions#show_current_user', :as => 'show_current_user'
+    get 'dummy' => 'sessions#dummy'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
