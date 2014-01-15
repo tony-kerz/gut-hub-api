@@ -13,6 +13,7 @@ Bundler.require(:default, Rails.env)
 
 module GutHubApi
   class Application < Rails::Application
+    config.autoload_paths += [Rails.root.join('app', 'other')]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -29,13 +30,13 @@ module GutHubApi
     # ref: https://gist.github.com/AdrianTeh/3561310#file-cors-with-rails-devise-L15
     #
     # Ensure Rack::Cors to run before Warden::Manager used by Devise
-    config.middleware.insert_before Warden::Manager, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*',
-                 :headers => :any,
-                 :methods => [:get, :post, :options]
-      end
-    end
+    #config.middleware.insert_before Warden::Manager, Rack::Cors do
+    #  allow do
+    #    origins '*'
+    #    resource '*',
+    #             :headers => :any,
+    #             :methods => [:get, :post, :options]
+    #  end
+    #end
   end
 end

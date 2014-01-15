@@ -34,6 +34,8 @@ GutHubApi::Application.routes.draw do
 
   resources :recipes
 
+  resources :others
+
   # Example resource route with options:
   #   resources :products do
   #     member do

@@ -44,10 +44,11 @@ group :development do
   gem 'binding_of_caller'
 end
 
-gem 'rack-cors', :require => 'rack/cors'
+#gem 'rack-cors', :require => 'rack/cors'
 gem 'devise'
 gem 'cancan'
 gem 'rolify', '~> 3.3.0.rc4'
-gem 'logging', :git => 'https://github.com/tony-kerz/logging.git', :tag => 'logging-1.8.2'
+gem 'logging', :git => 'https://github.com/tony-kerz/logging.git', :tag => 'v1.8.2'
 gem 'logging-rails', :require => 'logging/rails'
 gem 'rails_config'
+gem 'awesome_print'

@@ -93,6 +93,7 @@ Logging::Rails.configure do |config|
   Logging.logger.root.appenders = config.log_to unless config.log_to.empty?
 
   Logging.logger['ActiveRecord'].level = :INFO
+  Logging.logger['Other'].level = :DEBUG
 
   # Under Phusion Passenger smart spawning, we need to reopen all IO streams
   # after workers have forked.

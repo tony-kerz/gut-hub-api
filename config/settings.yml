@@ -1,1 +1,1 @@
-enable_csrf: true
+enable_csrf: false

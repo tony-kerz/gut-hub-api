@@ -10,7 +10,7 @@ def force_user email: email, role: role
   user = User.where(email: email).first
   if user.nil?
     p "user=#{email} not found, creating with role=#{role}..."
-    user = User.create!(email: email, password: '11235813', password_confirmation: '11235813')
+    user = User.create!(email: email, password: 'pw', password_confirmation: 'pw')
     user.add_role role
   else
     p "user=#{email} already exists..."
@@ -32,7 +32,7 @@ role_names.each do |role_name|
 end
 
 p 'seeding admins...'
-emails = %w(admin@guthub.com)
+emails = %w(admin@guthub.com a@b.co)
 emails.each { |email| force_user email: email, role: :admin }
 
 p 'seeding users...'
