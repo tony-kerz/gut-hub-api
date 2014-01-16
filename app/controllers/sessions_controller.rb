@@ -31,7 +31,7 @@ class SessionsController < Devise::SessionsController
 
   def show_current_user
     logger.debug { "show-current-user" }
-    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    #warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     render :status => 200,
            :json => {:success => true,
                      :info => "Current User",
