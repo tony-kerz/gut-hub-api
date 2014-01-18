@@ -38,5 +38,9 @@ module GutHubApi
     #             :methods => [:get, :post, :options]
     #  end
     #end
+    # <tk>
+    config.timestamp_format = '%Y-%m-%d %H:%M:%S'
+    config.assets.debug = true
+    # </tk>
   end
 end

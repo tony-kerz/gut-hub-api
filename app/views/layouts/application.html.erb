@@ -1,17 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GutHubApi</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <title>GutHub Admin</title>
+  <%= stylesheet_link_tag "vendor" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag "vendor" %>
+  <%= javascript_include_tag "application" %>
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div id="wrap">
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target=".navbar-collapse">
+          <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+        class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/g-batch">
+          <i class="fa fa-hospital-o"></i> GutHub Admin</a>
+      </div>
+      <div class="collapse navbar-collapse">
 
-<%= yield %>
+        <ul class="nav navbar-nav nav-pills">
+          <li><a href="#">ingest</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ingest <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">ingests</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <% if user_signed_in? %>
+                <%= link_to "Logout [#{current_user.email}]", destroy_user_session_path, :method => 'delete', data: {confirm: 'really logout?'} %>
+            <% else %>
+                <%= link_to 'Login', new_user_session_path %>
+            <% end %>
+          </li>
+          <% if user_signed_in? %>
+              <li>
+                <%= link_to 'Edit account', edit_user_registration_path %>
+              </li>
+              <% if current_user.has_role? :admin %>
+                  <li>
+                    <%= link_to 'Admin', users_path %>
+                  </li>
+              <% end %>
+          <% end %>
+        </ul>
+
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+
+  <div class="container">
+    <%= render partial: "shared/flash" %>
+    <%= yield %>
+  </div>
+
+</div>
+<!-- wrap -->
+
+<div id="footer">
+  <div class="muted credit">Powered by Kerz Creative
+    <span class="pull-right time"><i class="fa fa-clock-o"></i>  <%= Time.now.strftime Rails.application.config.timestamp_format %></span>
+  </div>
+</div>
 
 </body>
 </html>

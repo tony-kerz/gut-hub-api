@@ -11,3 +11,55 @@
  *= require_self
  *= require_tree .
  */
+
+/*
+html,
+body {
+    height: 100%;
+    padding-top: 10px;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -50px;
+    padding: 0 0 50px;
+}
+
+.navbar-fixed-top {
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 15px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#footer {
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
+    border: 1px solid #d4d4d4;
+    background-image: linear-gradient(to top, #ffffff, #f2f2f2);
+    background-repeat: repeat-x;
+    border-width: 1px;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-right:20px;
+    padding-left:20px;
+}
+
+#wrap > .container {
+    padding: 60px 15px 0;
+}
+*/

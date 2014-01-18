@@ -1,12 +1,15 @@
 GutHubApi::Application.routes.draw do
   devise_for :users
 
+  # tlk: users as resource for local admin features
+  resources :users
+
   # tlk
   # ref: https://gist.github.com/AdrianTeh/3561310#file-cors-with-rails-devise-L62
   #
   #devise_for :users, :controllers => {:sessions => 'sessions'}
 
-  # tlk
+  # tlk: ajaxable authentication
   # ref: https://github.com/jesalg/RADD/blob/master/config/routes.rb#L58
   #
   devise_scope :user do
@@ -16,12 +19,18 @@ GutHubApi::Application.routes.draw do
     get 'dummy' => 'sessions#dummy'
   end
 
+  # tlk: default
+  root :to => 'application#home'
+
+  # tlk: controller-less routes
+  get '/home' => 'application#home'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'recipes#index'
+  # root 'recipes#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
