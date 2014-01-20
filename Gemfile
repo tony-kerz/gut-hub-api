@@ -61,3 +61,4 @@ gem 'logging', :git => 'https://github.com/tony-kerz/logging.git', :tag => 'v1.8
 gem 'logging-rails', :require => 'logging/rails'
 gem 'rails_config'
 gem 'awesome_print'
+gem 'smarter_csv'
