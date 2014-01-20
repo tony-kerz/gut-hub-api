@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2484767422">
+  <component name="DataSourceManagerImpl" format="xml" hash="2208677227">
     <data-source source="LOCAL" name="Rails gut-hub-api: development" uuid="67d6600d-3f77-4f81-8718-70e6c580270c">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

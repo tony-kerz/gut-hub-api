@@ -1,1 +1,3 @@
 enable_csrf: false
+ingest_folder: ./ingest
+timestamp_format: '%Y-%m-%d %H:%M:%S'

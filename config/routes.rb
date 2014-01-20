@@ -19,6 +19,9 @@ GutHubApi::Application.routes.draw do
     get 'dummy' => 'sessions#dummy'
   end
 
+  get 'ingests' => 'ingests#index'
+  post 'ingests' => 'ingests#create'
+
   # tlk: default
   root :to => 'application#home'
 

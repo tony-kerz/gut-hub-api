@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140104162600) do
+ActiveRecord::Schema.define(version: 20140117200035) do
+
+  create_table "ingests", force: true do |t|
+    t.string   "file_name"
+    t.datetime "file_at"
+    t.integer  "records"
+    t.string   "status"
+    t.boolean  "success"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ingredients", force: true do |t|
     t.decimal  "amount"

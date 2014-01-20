@@ -94,6 +94,7 @@ Logging::Rails.configure do |config|
 
   Logging.logger['ActiveRecord'].level = :INFO
   Logging.logger['Other'].level = :DEBUG
+  Logging.logger['IngestsController'].level = :DEBUG
 
   # Under Phusion Passenger smart spawning, we need to reopen all IO streams
   # after workers have forked.
