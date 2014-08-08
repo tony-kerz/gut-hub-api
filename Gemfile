@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '~> 4.1.4'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -27,7 +27,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+#gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -56,9 +56,10 @@ end
 #gem 'rack-cors', :require => 'rack/cors'
 gem 'devise'
 gem 'cancan'
-gem 'rolify', '~> 3.3.0.rc4'
-gem 'logging', :git => 'https://github.com/tony-kerz/logging.git', :tag => 'v1.8.2'
+gem 'rolify'
+gem 'logging'
 gem 'logging-rails', :require => 'logging/rails'
 gem 'rails_config'
 gem 'awesome_print'
 gem 'smarter_csv'
+gem 'active_model_serializers', '~> 0.9.0.alpha'

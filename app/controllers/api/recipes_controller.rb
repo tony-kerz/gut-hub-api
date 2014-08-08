@@ -1,4 +1,4 @@
-class RecipesController < ApplicationController
+class Api::RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   before_filter :authenticate_user!
@@ -6,12 +6,13 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    render json: Recipe.all
   end
 
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    render json: @recipe
   end
 
   # GET /recipes/new

@@ -1,49 +1,32 @@
-class SessionsController < Devise::SessionsController
+# ref: http://jes.al/2013/08/authentication-with-rails-devise-and-angularjs/
+# ref: https://github.com/jesalg/RADD
+class Api::SessionsController < Devise::SessionsController
   respond_to :json
+  before_filter :ensure_current_id!, only: [:show, :destroy]
+
+  CURRENT = 'current'
 
   def create
-    logger.debug { "create" }
-    resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
-    render :status => 200,
-           :json => {:success => true,
-                     :info => "Logged in",
-                     :user => current_user
-           }
+    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    render status: :created, json: current_user, serializer: SessionSerializer
   end
 
   def destroy
-    logger.debug { "destroy" }
     warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     sign_out
-    render :status => 200,
-           :json => {:success => true,
-                     :info => "Logged out",
-           }
+    render status: :ok, json: {status: 'logged out'}
+  end
+
+  def show
+    warden.authenticate(:scope => resource_name, :recall => "#{controller_path}#failure")
+    render status: :ok, json: current_user, serializer: SessionSerializer
   end
 
   def failure
-    logger.debug { "failure" }
-    render :status => 401,
-           :json => {:success => false,
-                     :info => "Login Credentials Failed"
-           }
+    render status: :unauthorized, json: {status: 'login failed'}
   end
 
-  def show_current_user
-    logger.debug { "show-current-user" }
-    #warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
-    render :status => 200,
-           :json => {:success => true,
-                     :info => "Current User",
-                     :user => current_user
-           }
-  end
-
-  def dummy
-    logger.debug { "dummy" }
-    render :status => 200,
-           :json => {:success => true,
-                     :info => "dummy!"
-           }
+  def ensure_current_id!
+    raise "only id value of [#{CURRENT}] supported" unless params[:id] == CURRENT
   end
 end

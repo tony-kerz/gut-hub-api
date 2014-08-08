@@ -12,12 +12,12 @@ GutHubApi::Application.routes.draw do
   # tlk: ajaxable authentication
   # ref: https://github.com/jesalg/RADD/blob/master/config/routes.rb#L58
   #
-  devise_scope :user do
-    post 'login' => 'sessions#create', :as => 'login'
-    post 'logout' => 'sessions#destroy', :as => 'logout'
-    get 'current_user' => 'sessions#show_current_user', :as => 'show_current_user'
-    get 'dummy' => 'sessions#dummy'
-  end
+  #devise_scope :user do
+#    post 'login' => 'sessions#create', :as => 'login'
+#    post 'logout' => 'sessions#destroy', :as => 'logout'
+#    get 'current_user' => 'sessions#show_current_user', :as => 'show_current_user'
+#    get 'dummy' => 'sessions#dummy'
+#  end
 
   get 'ingests' => 'ingests#index'
   post 'ingests' => 'ingests#create'
@@ -43,10 +43,17 @@ GutHubApi::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  namespace :api do
 
-  resources :recipes
+    devise_scope :user do
+      resources :sessions, only: [:create, :show, :destroy]
+    end
 
-  resources :others
+    resources :recipes
+
+    resources :others
+
+  end
 
   # Example resource route with options:
   #   resources :products do
