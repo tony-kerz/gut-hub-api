@@ -8,13 +8,14 @@
 
 def force_user email: email, role: role
   user = User.where(email: email).first
-  if user.nil?
-    p "user=#{email} not found, creating with role=#{role}..."
-    user = User.create!(email: email, password: 'pw', password_confirmation: 'pw')
-    user.add_role role
+  if user
+    p "user=#{email} exists, destorying and recreating with role=#{role}..."
+    user.destroy
   else
-    p "user=#{email} already exists..."
+    p "user=#{email} not found, creating with role=#{role}..."
   end
+  user = User.create!(email: email, password: 'pw', password_confirmation: 'pw')
+  user.add_role role
 end
 
 p 'seeding roles...'
